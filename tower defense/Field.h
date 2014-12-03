@@ -4,24 +4,16 @@
 
 class Field:public sf::Drawable
 {
-public:
-
-	enum FieldType { ENTER, EXIT, EMPTY, WALL, TOWER };
-
-private:
+protected:
 
 	sf::Sprite mFieldSprite;
-	FieldType mType;
+	int mID;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
 public:
-	Field(FieldType type, float x, float y);
-	Field(const Field& origin);
-	~Field();
+	Field(int x, int y);
+	virtual ~Field();
 
-	Field& operator=(const Field& origin);
-
-	FieldType getType()const;
+	virtual void update(const sf::RenderWindow& window, const sf::Event& pEvent, float dt) {};
 };
-
