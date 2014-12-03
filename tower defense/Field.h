@@ -15,5 +15,5 @@ public:
 	Field(int x, int y);
 	virtual ~Field();
 
-	virtual void update(const sf::RenderWindow& window, const sf::Event& pEvent, float dt) {};
+	virtual void update(const sf::RenderWindow& window, const sf::Event& pEvent, float dt)=0;
 };
