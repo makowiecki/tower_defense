@@ -46,6 +46,8 @@ namespace
 
 	ResourceKeeper::ResourceKeeper()
 	{
+		if(!mTexturesMap[ResourceManager::FIELD_ENTER].loadFromFile(RESOURCE_DIRECTORY + "Images/field-enter.png")) { _getch(); exit(-1); }
+		if(!mTexturesMap[ResourceManager::FIELD_EXIT].loadFromFile(RESOURCE_DIRECTORY + "Images/field-exit.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::FIELD_EMPTY].loadFromFile(RESOURCE_DIRECTORY + "Images/field-empty.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::FIELD_WALL].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall.png")) { _getch(); exit(-1); }
 

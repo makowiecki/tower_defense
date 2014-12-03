@@ -4,7 +4,7 @@
 
 namespace ResourceManager
 {
-	enum Textures { FIELD_EMPTY, FIELD_WALL, TEXTURES_NUMBER };
+	enum Textures { FIELD_ENTER, FIELD_EXIT, FIELD_EMPTY, FIELD_WALL, FIELD_TOWER };
 	enum Fonts { FONT_1, FONTS_NUMBER };
 
 	////
