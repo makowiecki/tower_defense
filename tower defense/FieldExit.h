@@ -1,12 +1,11 @@
 #pragma once
-
 #include "Field.h"
 
-class FieldWall:	public Field
+class FieldExit:	public Field
 {
 public:
-	FieldWall(int x, int y);
-	virtual ~FieldWall();
+	FieldExit(int x, int y);
+	virtual ~FieldExit();
 
 	void update(const sf::RenderWindow& window, float dt);
 };

@@ -2,6 +2,9 @@
 
 #include <SFML\Graphics.hpp>
 
+#include <iostream>
+using namespace std;
+
 class Field:public sf::Drawable
 {
 protected:
@@ -15,5 +18,5 @@ public:
 	Field(int x, int y);
 	virtual ~Field();
 
-	virtual void update(const sf::RenderWindow& window, const sf::Event& pEvent, float dt)=0;
+	virtual void update(const sf::RenderWindow& window, float dt)=0;
 };
