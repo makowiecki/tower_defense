@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Pliki nagłówkowe\Fields">
+      <UniqueIdentifier>{d9104ad7-2bb1-45a2-b394-70c9b568f612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Fields">
+      <UniqueIdentifier>{173e2ae8-2a10-4dff-940d-1c7d36134342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki źródłowe\Globals">
+      <UniqueIdentifier>{85ca644c-d352-4c49-bb52-b8d6d34b72ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pliki nagłówkowe\Globals">
+      <UniqueIdentifier>{b52068ad-c0c9-4c97-a339-7796be0020e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -21,28 +33,55 @@
     <ClCompile Include="Game.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldEmpty.cpp">
+      <Filter>Pliki źródłowe\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldEnter.cpp">
+      <Filter>Pliki źródłowe\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldExit.cpp">
+      <Filter>Pliki źródłowe\Fields</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldWall.cpp">
+      <Filter>Pliki źródłowe\Fields</Filter>
     </ClCompile>
     <ClCompile Include="global-information.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>Pliki źródłowe\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Pliki źródłowe\Globals</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="Field.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldEmpty.h">
+      <Filter>Pliki nagłówkowe\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldEnter.h">
+      <Filter>Pliki nagłówkowe\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldExit.h">
+      <Filter>Pliki nagłówkowe\Fields</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldWall.h">
+      <Filter>Pliki nagłówkowe\Fields</Filter>
     </ClInclude>
     <ClInclude Include="global-information.h">
-      <Filter>Pliki nagłówkowe</Filter>
+      <Filter>Pliki nagłówkowe\Globals</Filter>
     </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Pliki nagłówkowe\Globals</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
