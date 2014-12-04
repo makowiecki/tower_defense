@@ -1,7 +1,10 @@
 #include "Game.h"
 
 #include "global-information.h"
-#include "Wall.h"
+#include "FieldWall.h"
+
+#include <iostream>
+using namespace std;
 
 Game::Game()
 {
@@ -16,7 +19,7 @@ Game::Game()
 	{
 		for(unsigned int j=0; j < gi::FIELDS_IN_COLUMN; ++j)
 		{
-			mBoard[i][j]=new Wall(i*gi::FIELD_WIDTH, j*gi::FIELD_HEIGHT);
+			mBoard[i][j]=new FieldWall(i*gi::FIELD_WIDTH, j*gi::FIELD_HEIGHT);
 
 			//			if(i == 0 && j == gi::FIELDS_IN_COLUMN / 2)
 			//			{
@@ -56,7 +59,13 @@ Game::~Game()
 
 void Game::update(const sf::RenderWindow& window, float dt)
 {
-
+	for(unsigned int i=0; i < gi::FIELDS_IN_ROW; ++i)
+	{
+		for(unsigned int j=0; j < gi::FIELDS_IN_COLUMN; ++j)
+		{
+			mBoard[i][j]->update(window, dt);
+		}
+	}
 }
 
 void Game::draw(sf::RenderWindow& window)
