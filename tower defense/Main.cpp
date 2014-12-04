@@ -12,6 +12,7 @@ using namespace std;
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(gi::WINDOW_WIDTH, gi::WINDOW_HEIGHT), "michal");
+	window.setVerticalSyncEnabled(true);
 
 	Game twGame;
 
