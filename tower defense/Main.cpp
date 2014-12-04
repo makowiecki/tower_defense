@@ -2,6 +2,7 @@
 using namespace std;
 #include <SFML\Graphics.hpp>
 #include "Game.h"
+#include "global-information.h"
 
 //=================================================
 
@@ -10,7 +11,7 @@ using namespace std;
 //=================================================
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "michal");
+	sf::RenderWindow window(sf::VideoMode(gi::WINDOW_WIDTH, gi::WINDOW_HEIGHT), "michal");
 
 	Game twGame;
 
@@ -29,7 +30,7 @@ int main()
 		}
 
 		dt=clock.getElapsedTime().asSeconds();
-		twGame.update(window, myEvent, dt);
+		twGame.update(window, dt);
 		clock.restart();
 
 		window.clear(sf::Color(0, 125, 0));
