@@ -15,3 +15,8 @@ void Field::draw(sf::RenderTarget& target, sf::RenderStates states)const
 {
 	target.draw(mFieldSprite);
 }
+
+int Field::getID()const
+{
+	return mID;
+}

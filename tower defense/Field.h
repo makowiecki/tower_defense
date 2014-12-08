@@ -18,5 +18,7 @@ public:
 	Field(int x, int y);
 	virtual ~Field();
 
+	int getID()const;
+
 	virtual void update(const sf::RenderWindow& window, float dt)=0;
 };
