@@ -11,6 +11,6 @@ public:
 	FieldEnter(int x, int y);
 	virtual ~FieldEnter();
 
-	void update(const sf::RenderWindow& window, float dt);
+	void update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board);
 };
 

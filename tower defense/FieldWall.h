@@ -8,6 +8,6 @@ public:
 	FieldWall(int x, int y);
 	virtual ~FieldWall();
 
-	void update(const sf::RenderWindow& window, float dt);
+	void update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board);
 };
 

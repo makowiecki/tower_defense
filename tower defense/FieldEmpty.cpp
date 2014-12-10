@@ -11,7 +11,7 @@ FieldEmpty::FieldEmpty(int x, int y):Field(x,y)
 FieldEmpty::~FieldEmpty()
 {}
 
-void FieldEmpty::update(const sf::RenderWindow& window, float dt)
+void FieldEmpty::update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board)
 {
 
 }
