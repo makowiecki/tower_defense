@@ -25,3 +25,8 @@ int Field::getID()const
 {
 	return mID;
 }
+
+sf::Vector2f Field::getPosition()const
+{
+	return mFieldSprite.getPosition();
+}

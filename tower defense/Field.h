@@ -21,5 +21,7 @@ public:
 
 	int getID()const;
 
+	sf::Vector2f getPosition()const;
+
 	virtual void update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board)=0;
 };
