@@ -16,6 +16,7 @@ protected:
 
 public:
 	Field(int x, int y);
+	Field(const sf::Vector2f& pos);
 	virtual ~Field();
 
 	int getID()const;

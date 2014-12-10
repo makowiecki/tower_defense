@@ -7,6 +7,11 @@ Field::Field(int x, int y)
 	mFieldSprite.setPosition(static_cast<float>(x), static_cast<float>(y));
 }
 
+Field::Field(const sf::Vector2f& pos)
+{
+	mFieldSprite.setPosition(pos);
+}
+
 Field::~Field()
 {
 }
