@@ -54,6 +54,15 @@
     <ClCompile Include="ResourceManager.cpp">
       <Filter>Pliki źródłowe\Globals</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldManager.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -78,6 +87,18 @@
       <Filter>Pliki nagłówkowe\Globals</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
+      <Filter>Pliki nagłówkowe\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldManager.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="all-fields.h">
       <Filter>Pliki nagłówkowe\Globals</Filter>
     </ClInclude>
   </ItemGroup>

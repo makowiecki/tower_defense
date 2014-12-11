@@ -1,14 +1,13 @@
 #pragma once
 
 #include <SFML\Graphics.hpp>
-#include <vector>
-#include "Field.h"
+#include "Board.h"
 
 class Game
 {
 private:
 
-	std::vector<std::vector<Field*>> mBoard;
+	Board mBoard;
 
 	//EnemiesList
 	//Way??
