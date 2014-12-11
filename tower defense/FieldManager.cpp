@@ -71,21 +71,8 @@ void FieldManager::changeField(Field*& desinationPtr)
 	sf::Vector2f position(desinationPtr->getPosition());
 
 	delete desinationPtr;
-	
-	switch(mChosenFieldID)
-	{
-		case 0:
-			desinationPtr=new FieldEmpty(position);
-			break;
-		case 3:
-			desinationPtr=new FieldWall(position);
-			break;
-		case 4:
-			//desinationPtr=new Field... (position);
-			break;
-		default:
-			break;
-	}
+
+	desinationPtr=createField(mChosenFieldID, position);
 
 	mSetToChange=false;
 	mChosenFieldID=-1;
