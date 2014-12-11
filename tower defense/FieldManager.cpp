@@ -66,6 +66,11 @@ bool FieldManager::isSetToChange()
 	return mSetToChange;
 }
 
+void FieldManager::discardChange()
+{
+	mSetToChange=false;
+}
+
 void FieldManager::changeField(Field*& desinationPtr)
 {
 	sf::Vector2f position(desinationPtr->getPosition());

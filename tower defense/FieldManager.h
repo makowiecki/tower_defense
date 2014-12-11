@@ -23,6 +23,7 @@ public:
 
 	void setFieldToChange(int id);
 	bool isSetToChange();
+	void discardChange();
 	void changeField(Field*& desinationPtr);
 
 };
