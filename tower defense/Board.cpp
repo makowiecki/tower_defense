@@ -1,5 +1,6 @@
 #include "Board.h"
 
+#include "Way.h"
 
 Board::Board(int width, int height, int fieldWidith, int fieldHeight):mFieldManager(FieldManager::getInstance())
 {
@@ -59,7 +60,16 @@ void Board::updateAll(const sf::RenderWindow& window, float dt)
 
 			if(mFieldManager.isSetToChange())
 			{
-				mFieldManager.changeField(mBoard[i][j]);
+				if(findWay(mBoard, (int)mBoard[i][j]->getPosition().x / 50, (int)mBoard[i][j]->getPosition().y / 50))
+				{
+					cout << "TRUE" << endl;
+					mFieldManager.changeField(mBoard[i][j]);
+				}
+				else
+				{
+					mFieldManager.discardChange();
+					cout << "FALSE" << endl;
+				}
 			}
 		}
 	}
