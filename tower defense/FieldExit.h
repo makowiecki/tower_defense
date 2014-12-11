@@ -9,6 +9,6 @@ public:
 	FieldExit(const sf::Vector2f& pos);
 	virtual ~FieldExit();
 
-	void update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board);
+	void update(const sf::RenderWindow& window, float dt);
 };
 

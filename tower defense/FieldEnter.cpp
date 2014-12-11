@@ -17,7 +17,7 @@ FieldEnter::~FieldEnter()
 {
 }
 
-void FieldEnter::update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board)
+void FieldEnter::update(const sf::RenderWindow& window, float dt)
 {
 	
 }

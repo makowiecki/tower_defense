@@ -17,7 +17,7 @@ FieldExit::~FieldExit()
 {
 }
 
-void FieldExit::update(const sf::RenderWindow& window, float dt, const std::vector<std::vector<Field*>>& board)
+void FieldExit::update(const sf::RenderWindow& window, float dt)
 {
 
 }
