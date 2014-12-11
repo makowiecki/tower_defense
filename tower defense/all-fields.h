@@ -1,3 +1,4 @@
+#include "Field.h"		// abstract no id
 #include "FieldEmpty.h"	//	id=0
 #include "FieldEnter.h"	//	id=1
 #include "FieldExit.h"	//	id=2
