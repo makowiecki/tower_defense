@@ -9,6 +9,9 @@ public:
 	FieldExit(const sf::Vector2f& pos);
 	virtual ~FieldExit();
 
+	FieldExit(const FieldExit& origin)=delete;
+	FieldExit operator=(const FieldExit& origin)=delete;
+
 	void update(const sf::RenderWindow& window, float dt);
 };
 

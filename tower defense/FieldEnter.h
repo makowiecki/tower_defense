@@ -13,6 +13,9 @@ public:
 	FieldEnter(const sf::Vector2f& pos);
 	virtual ~FieldEnter();
 
+	FieldEnter(const FieldEnter& origin)=delete;
+	FieldEnter operator=(const FieldEnter& origin)=delete;
+
 	void update(const sf::RenderWindow& window, float dt);
 };
 
