@@ -63,6 +63,9 @@
     <ClCompile Include="FieldManager.cpp">
       <Filter>Pliki źródłowe\Globals</Filter>
     </ClCompile>
+    <ClCompile Include="Way.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -100,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="FieldManager.h">
       <Filter>Pliki nagłówkowe\Globals</Filter>
+    </ClInclude>
+    <ClInclude Include="Way.h">
+      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

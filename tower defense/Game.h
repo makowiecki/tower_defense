@@ -3,11 +3,16 @@
 #include <SFML\Graphics.hpp>
 #include "Board.h"
 
+#include <list>
+#include "Enemy.h"
+
 class Game
 {
 private:
 
 	Board mBoard;
+
+	std::list<Enemy> mEnemiesList;
 
 	//EnemiesList
 	//Way??
