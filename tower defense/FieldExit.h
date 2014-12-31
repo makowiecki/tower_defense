@@ -4,9 +4,16 @@
 
 class FieldExit:	public Field
 {
-public:
+private:
+
+	friend class FieldManager;
+
 	FieldExit(int x, int y);
 	FieldExit(const sf::Vector2f& pos);
+
+	virtual void init();
+
+public:
 	virtual ~FieldExit();
 
 	FieldExit(const FieldExit& origin)=delete;

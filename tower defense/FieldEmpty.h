@@ -4,9 +4,16 @@
 
 class FieldEmpty:	public Field
 {
-public:
+private:
+
+	friend class FieldManager;
+
 	FieldEmpty(int x, int y);
 	FieldEmpty(const sf::Vector2f& pos);
+
+	virtual void init();
+
+public:
 	virtual ~FieldEmpty();
 
 	FieldEmpty(const FieldEmpty& origin)=delete;

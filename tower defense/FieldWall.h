@@ -4,9 +4,16 @@
 
 class FieldWall:	public Field
 {
-public:
+private:
+
+	friend class FieldManager;
+
 	FieldWall(int x, int y);
 	FieldWall(const sf::Vector2f& pos);
+
+	virtual void init();
+
+public:
 	virtual ~FieldWall();
 
 	FieldWall(const FieldWall& origin)=delete;
