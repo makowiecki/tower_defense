@@ -3,7 +3,7 @@
 
 FieldManager FieldManager::mManager;
 
-FieldManager::FieldManager():mSetToChange(false), mChosenFieldID(-1)
+FieldManager::FieldManager():mSetToChange(false), mChosenFeldType(FIELD_NONE)
 {
 }
 
@@ -17,48 +17,43 @@ FieldManager& FieldManager::getInstance()
 	return mManager;
 }
 
-Field* FieldManager::createField(int id, int x, int y)
+Field* FieldManager::createField(FieldType feldType, int x, int y)
 {
-	switch(id)
+	switch(feldType)
 	{
-		case 0:
+		case FIELD_NONE:
+			return nullptr;
+			break;
+		case FIELD_EMPTY:
 			return new FieldEmpty(x, y);
-		case 1:
+			break;
+		case FIELD_ENTER:
 			return new FieldEnter(x, y);
-		case 2:
+			break;
+		case FIELD_EXIT:
 			return new FieldExit(x, y);
-		case 3:
+			break;
+		case FIELD_WALL:
 			return new FieldWall(x, y);
-		//case 4:
-			//towers
+			break;
+		//case
+		default:
+			break;
 	}
 	return nullptr;
 }
 
 
-Field* FieldManager::createField(int id, const sf::Vector2f& pos)
+Field* FieldManager::createField(FieldType feldType, const sf::Vector2f& pos)
 {
-	switch(id)
-	{
-		case 0:
-			return new FieldEmpty(pos);
-		case 1:
-			return new FieldEnter(pos);
-		case 2:
-			return new FieldExit(pos);
-		case 3:
-			return new FieldWall(pos);
-		//case 4:
-			//towers
-	}
-	return nullptr;
+	return createField(feldType, static_cast<int>(pos.x), static_cast<int>(pos.y));
 }
 
 
-void FieldManager::setFieldToChange(int id)
+void FieldManager::setFieldToChange(FieldType feldType)
 {
 	mSetToChange=true;
-	mChosenFieldID=id;
+	mChosenFeldType=feldType;
 }
 
 bool FieldManager::isSetToChange()
@@ -69,6 +64,7 @@ bool FieldManager::isSetToChange()
 void FieldManager::discardChange()
 {
 	mSetToChange=false;
+	mChosenFeldType=FIELD_NONE;
 }
 
 void FieldManager::changeField(Field*& desinationPtr)
@@ -77,8 +73,8 @@ void FieldManager::changeField(Field*& desinationPtr)
 
 	delete desinationPtr;
 
-	desinationPtr=createField(mChosenFieldID, position);
+	desinationPtr=createField(mChosenFeldType, position);
 
 	mSetToChange=false;
-	mChosenFieldID=-1;
+	mChosenFeldType=FIELD_NONE;
 }

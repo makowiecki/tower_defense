@@ -6,11 +6,16 @@ class FieldEnter:	public Field
 {
 private:
 
+	friend class FieldManager;
+
 	float mAggregateTime;
 
-public:
 	FieldEnter(int x, int y);
 	FieldEnter(const sf::Vector2f& pos);
+
+	virtual void init();
+
+public:
 	virtual ~FieldEnter();
 
 	FieldEnter(const FieldEnter& origin)=delete;

@@ -3,18 +3,22 @@
 
 FieldEnter::FieldEnter(int x, int y):Field(x, y), mAggregateTime(0.0f)
 {
-	mID=1;
-	mFieldSprite.setTexture(ResourceManager::getTexture(ResourceManager::FIELD_ENTER));
+	init();
 }
 
 FieldEnter::FieldEnter(const sf::Vector2f& pos):Field(pos)
 {
-	mID=1;
-	mFieldSprite.setTexture(ResourceManager::getTexture(ResourceManager::FIELD_ENTER));
+	init();
 }
 
 FieldEnter::~FieldEnter()
 {
+}
+
+void FieldEnter::init()
+{
+	mType=FieldType::FIELD_ENTER;
+	mFieldSprite.setTexture(ResourceManager::getTexture(ResourceManager::FIELD_ENTER));
 }
 
 void FieldEnter::update(const sf::RenderWindow& window, float dt)
