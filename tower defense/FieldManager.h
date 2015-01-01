@@ -12,9 +12,13 @@ private:
 	bool mSetToChange;
 	FieldType mChosenFeldType;
 
-public:
 	FieldManager();
 	~FieldManager();
+
+	FieldManager(const FieldManager& origin)=delete;
+	FieldManager operator=(const FieldManager& origin)=delete;
+
+public:
 
 	static FieldManager& getInstance();
 
