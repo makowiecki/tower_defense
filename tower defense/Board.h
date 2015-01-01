@@ -2,7 +2,6 @@
 #define BOARD_H
 
 #include <vector>
-#include "all-fields.h"
 #include "FieldManager.h"
 
 class Board

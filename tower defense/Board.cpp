@@ -16,23 +16,23 @@ Board::Board(int width, int height, int fieldWidith, int fieldHeight):mFieldMana
 		{
 			if(i == 0 && j == height / 2)
 			{
-				mBoard[i][j]=new FieldEnter(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=mFieldManager.createField(FieldType::FIELD_ENTER, i*fieldWidith, j*fieldHeight);
 			}
 			else if(i == width - 1 && j == height / 2)
 			{
-				mBoard[i][j]=new FieldExit(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=mFieldManager.createField(FieldType::FIELD_EXIT, i*fieldWidith, j*fieldHeight);
 			}
 			else if(i == 0 || i == width - 1)
 			{
-				mBoard[i][j]=new FieldWall(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=mFieldManager.createField(FieldType::FIELD_WALL, i*fieldWidith, j*fieldHeight);
 			}
 			else if(j == 0 || j == height - 1)
 			{
-				mBoard[i][j]=new FieldWall(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=mFieldManager.createField(FieldType::FIELD_WALL, i*fieldWidith, j*fieldHeight);
 			}
 			else
 			{
-				mBoard[i][j]=new FieldEmpty(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=mFieldManager.createField(FieldType::FIELD_EMPTY, i*fieldWidith, j*fieldHeight);
 			}
 		}
 	}
