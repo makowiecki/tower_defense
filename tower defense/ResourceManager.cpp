@@ -32,8 +32,8 @@ namespace
 		ResourceKeeper();
 		~ResourceKeeper() {};
 
-		ResourceKeeper(const ResourceKeeper&);				// undefined
-		ResourceKeeper& operator=(const ResourceKeeper&);	// undefined	
+		ResourceKeeper(const ResourceKeeper&)=delete;
+		ResourceKeeper& operator=(const ResourceKeeper&)=delete;
 
 	public:
 
