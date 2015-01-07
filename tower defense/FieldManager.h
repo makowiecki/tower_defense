@@ -10,7 +10,7 @@ private:
 	static FieldManager mManager;
 
 	bool mSetToChange;
-	FieldType mChosenFeldType;
+	int mChosenFieldID;
 
 public:
 	FieldManager();
@@ -18,12 +18,13 @@ public:
 
 	static FieldManager& getInstance();
 
-	Field* createField(FieldType fieldType, int x, int y);
-	Field* createField(FieldType fieldType, const sf::Vector2f& pos);
+	Field* createField(int id, int x, int y);
+	Field* createField(int id, const sf::Vector2f& pos);
 
-	void setFieldToChange(FieldType fieldType);
+	void setFieldToChange(int id);
 	bool isSetToChange();
 	void discardChange();
 	void changeField(Field*& desinationPtr);
+
 };
 #endif

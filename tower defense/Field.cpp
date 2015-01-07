@@ -21,9 +21,9 @@ void Field::draw(sf::RenderTarget& target, sf::RenderStates states)const
 	target.draw(mFieldSprite);
 }
 
-FieldType Field::getFieldType()const
+int Field::getID()const
 {
-	return mType;
+	return mID;
 }
 
 sf::Vector2f Field::getPosition()const

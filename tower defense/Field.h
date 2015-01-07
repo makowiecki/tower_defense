@@ -5,31 +5,21 @@
 #include <iostream>
 using namespace std;
 
-enum FieldType { FIELD_NONE, FIELD_EMPTY, FIELD_ENTER, FIELD_EXIT, FIELD_WALL };
-
 class Field:public sf::Drawable
 {
-private:
-	
-	friend class FieldManager;
-
 protected:
 
 	sf::Sprite mFieldSprite;
-	FieldType mType;
-
-	Field(int x, int y);
-	Field(const sf::Vector2f& pos);
+	int mID;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
-	virtual void init()=0;
-
 public:
-	
+	Field(int x, int y);
+	Field(const sf::Vector2f& pos);
 	virtual ~Field();
 
-	FieldType getFieldType()const;
+	int getID()const;
 
 	sf::Vector2f getPosition()const;
 

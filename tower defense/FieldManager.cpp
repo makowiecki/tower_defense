@@ -3,7 +3,7 @@
 
 FieldManager FieldManager::mManager;
 
-FieldManager::FieldManager():mSetToChange(false), mChosenFeldType(FIELD_NONE)
+FieldManager::FieldManager():mSetToChange(false), mChosenFieldID(-1)
 {
 }
 
@@ -17,43 +17,48 @@ FieldManager& FieldManager::getInstance()
 	return mManager;
 }
 
-Field* FieldManager::createField(FieldType feldType, int x, int y)
+Field* FieldManager::createField(int id, int x, int y)
 {
-	switch(feldType)
+	switch(id)
 	{
-		case FIELD_NONE:
-			return nullptr;
-			break;
-		case FIELD_EMPTY:
+		case 0:
 			return new FieldEmpty(x, y);
-			break;
-		case FIELD_ENTER:
+		case 1:
 			return new FieldEnter(x, y);
-			break;
-		case FIELD_EXIT:
+		case 2:
 			return new FieldExit(x, y);
-			break;
-		case FIELD_WALL:
+		case 3:
 			return new FieldWall(x, y);
-			break;
-		//case
-		default:
-			break;
+		//case 4:
+			//towers
 	}
 	return nullptr;
 }
 
 
-Field* FieldManager::createField(FieldType feldType, const sf::Vector2f& pos)
+Field* FieldManager::createField(int id, const sf::Vector2f& pos)
 {
-	return createField(feldType, static_cast<int>(pos.x), static_cast<int>(pos.y));
+	switch(id)
+	{
+		case 0:
+			return new FieldEmpty(pos);
+		case 1:
+			return new FieldEnter(pos);
+		case 2:
+			return new FieldExit(pos);
+		case 3:
+			return new FieldWall(pos);
+		//case 4:
+			//towers
+	}
+	return nullptr;
 }
 
 
-void FieldManager::setFieldToChange(FieldType feldType)
+void FieldManager::setFieldToChange(int id)
 {
 	mSetToChange=true;
-	mChosenFeldType=feldType;
+	mChosenFieldID=id;
 }
 
 bool FieldManager::isSetToChange()
@@ -64,7 +69,6 @@ bool FieldManager::isSetToChange()
 void FieldManager::discardChange()
 {
 	mSetToChange=false;
-	mChosenFeldType=FIELD_NONE;
 }
 
 void FieldManager::changeField(Field*& desinationPtr)
@@ -73,8 +77,8 @@ void FieldManager::changeField(Field*& desinationPtr)
 
 	delete desinationPtr;
 
-	desinationPtr=createField(mChosenFeldType, position);
+	desinationPtr=createField(mChosenFieldID, position);
 
 	mSetToChange=false;
-	mChosenFeldType=FIELD_NONE;
+	mChosenFieldID=-1;
 }
