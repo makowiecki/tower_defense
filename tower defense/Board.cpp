@@ -2,7 +2,7 @@
 
 #include "Way.h"
 
-Board::Board(int width, int height, int fieldWidith, int fieldHeight):mFieldManager(FieldManager::getInstance())
+Board::Board(int width, int height, int fieldWidth, int fieldHeight):mFieldManager(FieldManager::getInstance())
 {
 	mBoard.reserve(width);
 
@@ -17,23 +17,23 @@ Board::Board(int width, int height, int fieldWidith, int fieldHeight):mFieldMana
 		{
 			if(i == 0 && j == height / 2)
 			{
-				mBoard[i][j]=new FieldEnter(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=new FieldEnter(i*fieldWidth, j*fieldHeight);
 			}
 			else if(i == width - 1 && j == height / 2)
 			{
-				mBoard[i][j]=new FieldExit(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=new FieldExit(i*fieldWidth, j*fieldHeight);
 			}
 			else if(i == 0 || i == width - 1)
 			{
-				mBoard[i][j]=new FieldWall(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=new FieldWall(i*fieldWidth, j*fieldHeight);
 			}
 			else if(j == 0 || j == height - 1)
 			{
-				mBoard[i][j]=new FieldWall(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=new FieldWall(i*fieldWidth, j*fieldHeight);
 			}
 			else
 			{
-				mBoard[i][j]=new FieldEmpty(i*fieldWidith, j*fieldHeight);
+				mBoard[i][j]=new FieldEmpty(i*fieldWidth, j*fieldHeight);
 			}
 		}
 	}
@@ -50,6 +50,31 @@ Board::~Board()
 	}
 }
 
+int Board::getWidth()const
+{
+	return mBoard.size();
+}
+
+int Board::getHeight()const
+{
+	return mBoard[0].size();
+}
+
+sf::Vector2i Board::getSize()const
+{
+	return sf::Vector2i(getHeight(), getWidth());
+}
+
+int Board::getFieldID(int pX, int pY)const
+{
+	return mBoard[pX][pY]->getID();
+}
+
+void Board::changeChosenField()
+{
+	mFieldManager.changeField(mBoard[mFieldManager.getChosenFieldPosition().x][mFieldManager.getChosenFieldPosition().y]);
+}
+
 void Board::updateAll(const sf::RenderWindow& window, float dt)
 {
 	for(unsigned int i=0; i < mBoard.size(); ++i)
@@ -57,20 +82,6 @@ void Board::updateAll(const sf::RenderWindow& window, float dt)
 		for(unsigned int j=0; j < mBoard[i].size(); ++j)
 		{
 			mBoard[i][j]->update(window, dt);
-
-			if(mFieldManager.isSetToChange())
-			{
-				if(findWay(mBoard, (int)mBoard[i][j]->getPosition().x / 50, (int)mBoard[i][j]->getPosition().y / 50))
-				{
-					cout << "TRUE" << endl;
-					mFieldManager.changeField(mBoard[i][j]);
-				}
-				else
-				{
-					mFieldManager.discardChange();
-					cout << "FALSE" << endl;
-				}
-			}
 		}
 	}
 }
