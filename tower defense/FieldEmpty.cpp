@@ -27,7 +27,7 @@ void FieldEmpty::update(const sf::RenderWindow& window, float dt)
 	{
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
 		{
-			FieldManager::getInstance().setFieldToChange(3);
+			FieldManager::getInstance().setFieldToChange(3, getPosition());
 		}
 	}
 }
