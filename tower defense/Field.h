@@ -10,7 +10,7 @@ enum FieldType { FIELD_NONE, FIELD_EMPTY, FIELD_ENTER, FIELD_EXIT, FIELD_WALL };
 class Field:public sf::Drawable
 {
 private:
-
+	
 	friend class FieldManager;
 
 protected:
