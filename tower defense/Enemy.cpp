@@ -31,11 +31,17 @@ void Enemy::update(const sf::RenderWindow& window, float dt, const Board& board)
 		FieldManager::getInstance().discardChange();
 	}
 
-	//mAggregateTime+=dt;
+	mAggregateTime+=dt;
 
-	//if(mAggregateTime > 1.0f)
-	//{
-	//	mEnemySprite.move(static_cast<float>(gi::FIELD_WIDTH), 0);
-	//	mAggregateTime=0.0f;
-	//}
+	if(mAggregateTime > 1.0f)
+	{
+		sf::Vector2f nextPosition;
+		sf::Vector2i nextStep=mWay.getNextStep();
+
+		nextPosition.x=static_cast<float>(nextStep.x*gi::FIELD_WIDTH + 25);
+		nextPosition.y=static_cast<float>(nextStep.y*gi::FIELD_HEIGHT + 25);
+
+		mEnemySprite.setPosition(nextPosition);
+		mAggregateTime=0.0f;
+	}
 }
