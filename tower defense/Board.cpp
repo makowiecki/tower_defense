@@ -65,9 +65,9 @@ sf::Vector2i Board::getSize()const
 	return sf::Vector2i(getHeight(), getWidth());
 }
 
-int Board::getFieldID(int pX, int pY)const
+FieldType Board::getFieldType(int pX, int pY)const
 {
-	return mBoard[pX][pY]->getID();
+	return mBoard[pX][pY]->getFieldType();
 }
 
 void Board::changeChosenField()

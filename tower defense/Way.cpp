@@ -28,15 +28,15 @@ void Way::makeCopy(const Board& board)
 	{
 		for(unsigned int j=0; j < mWorkingBoard[i].size(); ++j)
 		{
-			switch(board.getFieldID(i,j))
+			switch(board.getFieldType(i,j))// .getFieldID(i,j))
 			{
-				case 0:
+				case FieldType::FIELD_EMPTY:
 					mWorkingBoard[i][j]=0;
 					break;
-				case 1:
-					mWorkingBoard[i][j]=-1;
+				case FieldType::FIELD_ENTER:
+					mWorkingBoard[i][j]=1;
 					break;
-				case 2:
+				case FieldType::FIELD_EXIT:
 					mWorkingBoard[i][j]=2;
 					mExitPosition.x=i;
 					mExitPosition.y=j;
@@ -55,17 +55,6 @@ void Way::fillStepsList(int k)
 	++k;
 
 	sf::Vector2i actualPosition(mExitPosition);
-
-	//for(unsigned int i=0; i < mWorkingBoard.size(); ++i)
-	//{
-	//	for(unsigned int j=0; j < mWorkingBoard[i].size(); ++j)
-	//	{
-	//		cout.width(3);
-	//		cout << mWorkingBoard[i][j] << " ";
-	//	}
-	//	cout << endl;
-	//}
-
 
 	while(k != -1)
 	{

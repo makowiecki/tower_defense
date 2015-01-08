@@ -20,7 +20,7 @@ public:
 	int getHeight()const;
 	sf::Vector2i getSize()const;
 
-	int getFieldID(int pX, int pY)const;
+	FieldType getFieldType(int pX, int pY)const;
 
 	void changeChosenField();
 
