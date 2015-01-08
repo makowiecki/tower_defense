@@ -12,6 +12,8 @@ private:
 
 	FieldManager& mFieldManager;
 
+	bool canFindGlobalWay();
+
 public:
 	Board(int width, int height, int fieldWidth, int fieldHeight);
 	~Board();
