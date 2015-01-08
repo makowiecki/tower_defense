@@ -10,7 +10,7 @@ private:
 	static FieldManager mManager;
 
 	bool mSetToChange;
-	FieldType mChosenFeldType;
+	FieldType mChosenFieldType;
 	sf::Vector2i mOnBoardPosition;
 
 	FieldManager();

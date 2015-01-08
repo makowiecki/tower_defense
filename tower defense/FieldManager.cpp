@@ -4,7 +4,7 @@
 
 FieldManager FieldManager::mManager;
 
-FieldManager::FieldManager():mSetToChange(false), mChosenFeldType(FIELD_NONE)
+FieldManager::FieldManager():mSetToChange(false), mChosenFieldType(FIELD_NONE)
 {
 }
 
@@ -18,9 +18,9 @@ FieldManager& FieldManager::getInstance()
 	return mManager;
 }
 
-Field* FieldManager::createField(FieldType feldType, int x, int y)
+Field* FieldManager::createField(FieldType fieldType, int x, int y)
 {
-	switch(feldType)
+	switch(fieldType)
 	{
 		case FIELD_NONE:
 			return nullptr;
@@ -45,16 +45,16 @@ Field* FieldManager::createField(FieldType feldType, int x, int y)
 }
 
 
-Field* FieldManager::createField(FieldType feldType, const sf::Vector2f& pos)
+Field* FieldManager::createField(FieldType fieldType, const sf::Vector2f& pos)
 	{
-	return createField(feldType, static_cast<int>(pos.x), static_cast<int>(pos.y));
+	return createField(fieldType, static_cast<int>(pos.x), static_cast<int>(pos.y));
 }
 
 
-void FieldManager::setFieldToChange(FieldType feldType, const sf::Vector2f& pixelsPosition)
+void FieldManager::setFieldToChange(FieldType fieldType, const sf::Vector2f& pixelsPosition)
 {
 	mSetToChange=true;
-	mChosenFeldType=feldType;
+	mChosenFieldType=fieldType;
 	mOnBoardPosition.x=static_cast<int>(pixelsPosition.x / gi::FIELD_WIDTH);
 	mOnBoardPosition.y=static_cast<int>(pixelsPosition.y / gi::FIELD_HEIGHT);
 }
@@ -67,7 +67,7 @@ bool FieldManager::isSetToChange()const
 void FieldManager::discardChange()
 {
 	mSetToChange=false;
-	mChosenFeldType=FIELD_NONE;
+	mChosenFieldType=FIELD_NONE;
 }
 
 const sf::Vector2i& FieldManager::getChosenFieldPosition()const
@@ -81,8 +81,8 @@ void FieldManager::changeField(Field*& desinationPtr)
 
 	delete desinationPtr;
 
-	desinationPtr=createField(mChosenFeldType, position);
+	desinationPtr=createField(mChosenFieldType, position);
 
 	mSetToChange=false;
-	mChosenFeldType=FIELD_NONE;
+	mChosenFieldType=FIELD_NONE;
 }
