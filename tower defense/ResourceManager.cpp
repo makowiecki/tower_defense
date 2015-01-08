@@ -50,6 +50,7 @@ namespace
 		if(!mTexturesMap[ResourceManager::FIELD_EXIT].loadFromFile(RESOURCE_DIRECTORY + "Images/field-exit.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::FIELD_EMPTY].loadFromFile(RESOURCE_DIRECTORY + "Images/field-empty.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::FIELD_WALL].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall.png")) { _getch(); exit(-1); }
+		if(!mTexturesMap[ResourceManager::ENEMY_1].loadFromFile(RESOURCE_DIRECTORY + "Images/enemy1.png")) { _getch(); exit(-1); }
 
 
 		if(!mFontsMap[ResourceManager::FONT_1].loadFromFile(RESOURCE_DIRECTORY + "Fonts/font1.otf")) { _getch(); exit(-1); }

@@ -1,5 +1,6 @@
 #include "FieldManager.h"
 
+#include "global-information.h"
 
 FieldManager FieldManager::mManager;
 
@@ -45,18 +46,20 @@ Field* FieldManager::createField(FieldType feldType, int x, int y)
 
 
 Field* FieldManager::createField(FieldType feldType, const sf::Vector2f& pos)
-{
+	{
 	return createField(feldType, static_cast<int>(pos.x), static_cast<int>(pos.y));
 }
 
 
-void FieldManager::setFieldToChange(FieldType feldType)
+void FieldManager::setFieldToChange(FieldType feldType, const sf::Vector2f& pixelsPosition)
 {
 	mSetToChange=true;
 	mChosenFeldType=feldType;
+	mOnBoardPosition.x=static_cast<int>(pixelsPosition.x / gi::FIELD_WIDTH);
+	mOnBoardPosition.y=static_cast<int>(pixelsPosition.y / gi::FIELD_HEIGHT);
 }
 
-bool FieldManager::isSetToChange()
+bool FieldManager::isSetToChange()const
 {
 	return mSetToChange;
 }
@@ -65,6 +68,11 @@ void FieldManager::discardChange()
 {
 	mSetToChange=false;
 	mChosenFeldType=FIELD_NONE;
+}
+
+const sf::Vector2i& FieldManager::getChosenFieldPosition()const
+{
+	return mOnBoardPosition;
 }
 
 void FieldManager::changeField(Field*& desinationPtr)

@@ -11,6 +11,7 @@ private:
 
 	bool mSetToChange;
 	FieldType mChosenFeldType;
+	sf::Vector2i mOnBoardPosition;
 
 	FieldManager();
 	~FieldManager();
@@ -25,9 +26,10 @@ public:
 	Field* createField(FieldType fieldType, int x, int y);
 	Field* createField(FieldType fieldType, const sf::Vector2f& pos);
 
-	void setFieldToChange(FieldType fieldType);
-	bool isSetToChange();
+	void setFieldToChange(FieldType fieldType, const sf::Vector2f& pixelsPosition);
+	bool isSetToChange()const;
 	void discardChange();
+	const sf::Vector2i& getChosenFieldPosition()const;
 	void changeField(Field*& desinationPtr);
 };
 #endif

@@ -94,6 +94,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="FieldWall.cpp" />
+    <ClCompile Include="Way.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="all-fields.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="global-information.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="FieldWall.h" />
+    <ClInclude Include="Way.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

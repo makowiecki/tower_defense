@@ -13,8 +13,16 @@ private:
 	FieldManager& mFieldManager;
 
 public:
-	Board(int widith, int height, int fieldWidith, int fieldHeight);
+	Board(int width, int height, int fieldWidth, int fieldHeight);
 	~Board();
+
+	int getWidth()const;
+	int getHeight()const;
+	sf::Vector2i getSize()const;
+
+	int getFieldID(int pX, int pY)const;
+
+	void changeChosenField();
 
 	void updateAll(const sf::RenderWindow& window, float dt);
 	void drawAll(sf::RenderWindow& window);
