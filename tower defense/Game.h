@@ -4,7 +4,7 @@
 #include "Board.h"
 
 #include <list>
-#include "Enemy.h"
+#include "Monster.h"
 
 class Game
 {
@@ -12,7 +12,7 @@ private:
 
 	Board mBoard;
 
-	std::list<Enemy> mEnemiesList;
+	std::list<Monster> mEnemiesList;
 
 	//EnemiesList
 	//Way??

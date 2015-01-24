@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="FieldEmpty.cpp" />
     <ClCompile Include="FieldEnter.cpp" />
@@ -99,7 +99,7 @@
   <ItemGroup>
     <ClInclude Include="all-fields.h" />
     <ClInclude Include="Board.h" />
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="FieldEmpty.h" />
     <ClInclude Include="FieldEnter.h" />

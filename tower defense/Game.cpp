@@ -9,7 +9,7 @@ using namespace std;
 Game::Game()
 	:mBoard(gi::FIELDS_IN_ROW, gi::FIELDS_IN_COLUMN, gi::FIELD_WIDTH, gi::FIELD_HEIGHT)
 {
-	mEnemiesList.emplace_back(Enemy(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2),mBoard));
+	mEnemiesList.emplace_back(Monster(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2), mBoard));
 }
 
 

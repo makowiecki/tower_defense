@@ -4,20 +4,20 @@
 #include "Way.h"
 #include "Board.h"
 
-class Enemy:	public sf::Drawable
+class Monster:	public sf::Drawable
 {
 protected:
 
-	sf::Sprite mEnemySprite;
+	sf::Sprite mMonsterSprite;
 	Way mWay;
-	//int mID;
+	//Type mType;
 	float mAggregateTime;
 
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states)const;
 
 public:
-	Enemy(int pX, int pY, const Board& board);
-	virtual ~Enemy();
+	Monster(int pX, int pY, const Board& board);
+	virtual ~Monster();
 
 	virtual void update(const sf::RenderWindow& window, float dt, const Board& board);
 };
