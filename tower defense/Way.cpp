@@ -155,6 +155,11 @@ sf::Vector2i Way::getNextStep()
 	return ret;
 }
 
+int Way::getStepsNumber()const
+{
+	return mStepsList.size();
+}
+
 /* just in case
 bool GlobalWay::canFind(const std::vector<std::vector<Field*>>& board, unsigned int destinationX, unsigned int destinationY)
 {

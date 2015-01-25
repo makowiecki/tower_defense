@@ -30,6 +30,8 @@ public:
 	bool canFind(const Board& board, const sf::Vector2f& pixelsStartPosition);
 
 	sf::Vector2i getNextStep();
+
+	int getStepsNumber()const;
 };
 
 #endif

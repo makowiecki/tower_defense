@@ -92,6 +92,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="global-information.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MonstersList.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="FieldWall.cpp" />
     <ClCompile Include="Way.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="FieldManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="global-information.h" />
+    <ClInclude Include="MonstersList.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="FieldWall.h" />
     <ClInclude Include="Way.h" />

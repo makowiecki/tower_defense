@@ -2,20 +2,14 @@
 
 #include <SFML\Graphics.hpp>
 #include "Board.h"
-
-#include <list>
-#include "Monster.h"
+#include "MonstersList.h"
 
 class Game
 {
 private:
 
 	Board mBoard;
-
-	std::list<Monster> mEnemiesList;
-
-	//EnemiesList
-	//Way??
+	MonstersList mMonstersList;
 
 public:
 	Game();

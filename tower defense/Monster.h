@@ -19,6 +19,8 @@ public:
 	Monster(int pX, int pY, const Board& board);
 	virtual ~Monster();
 
+	bool isExitReached()const;
+
 	virtual void update(const sf::RenderWindow& window, float dt, const Board& board);
 };
 
