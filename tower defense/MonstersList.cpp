@@ -2,11 +2,9 @@
 
 #include "global-information.h"
 
-MonstersList::MonstersList(/*const Board& board*/)
+MonstersList::MonstersList()
 {
-	//mMonstersList.push_back(new Monster(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2)/*, board*/));
 }
-
 
 MonstersList::~MonstersList()
 {
@@ -16,26 +14,16 @@ MonstersList::~MonstersList()
 	}
 }
 
-void MonstersList::addMonster(/*MonsterType monsterType, */std::stack<sf::Vector2i>& monsterStepsList/*const Board& board*/)
+void MonstersList::addMonster(std::stack<sf::Vector2i>& monsterStepsList)
 {
-	mMonstersList.push_back(new Monster(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2), monsterStepsList/*, board*/));
+	mMonstersList.push_back(new Monster(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2), monsterStepsList));
 }
 
-int MonstersList::getMonstersCount()const
-{
-	return mMonstersList.size();
-}
-
-sf::Vector2f MonstersList::getMonsterPosition(int i)
-{
-	return (*mMonstersList.begin())->getPosition();
-}
-
-void MonstersList::update(const sf::RenderWindow& window, float dt/*, const Board& board*/)
+void MonstersList::update(const sf::RenderWindow& window, float dt)
 {
 	for(auto it=mMonstersList.begin(); it != mMonstersList.end();)
 	{
-		(*it)->update(window, dt/*, board*/);
+		(*it)->update(window, dt);
 
 		if((*it)->isExitReached())
 		{
@@ -45,15 +33,6 @@ void MonstersList::update(const sf::RenderWindow& window, float dt/*, const Boar
 		{
 			++it;
 		}
-	}
-
-	static float mAggregateTime=0.0;
-	mAggregateTime+=dt;
-
-	if(mAggregateTime > 1.5f)
-	{
-		//addMonster();
-		mAggregateTime=0.0f;
 	}
 }
 

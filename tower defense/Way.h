@@ -4,7 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include <vector>
 #include "MonstersList.h"
-#include <stack>
+#include "Monster.h"
 #include "Board.h"
 
 class Way
@@ -12,7 +12,6 @@ class Way
 private:
 
 	std::vector<std::vector<int>> mWorkingBoard;
-	//std::stack<sf::Vector2i> mStepsList;
 	sf::Vector2i mExitPosition;
 	int mValueParameter;
 
@@ -31,13 +30,10 @@ public:
 	////
 	bool canFind(const Board& board, const sf::Vector2f& pixelsStartPosition);
 
+	//TODO: think about rename:
 	bool findedWayInAll(MonstersList& monstersList, const Board& board);
 
 	void fillGlobalStepsList(Board& board);
-
-	//std::stack<sf::Vector2i> getStepsList();
-
-	//int getStepsNumber()const;
 };
 
 #endif

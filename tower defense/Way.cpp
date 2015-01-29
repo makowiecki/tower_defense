@@ -2,11 +2,8 @@
 #include "global-information.h"
 #include <queue>
 
-#include <iostream>
-using namespace std;
-#include <conio.h>
-
-Way::Way(const Board& board):mValueParameter(-1)
+Way::Way(const Board& board)
+	:mValueParameter(-1)
 {
 	int width=board.getWidth();
 	int height=board.getHeight();
@@ -29,7 +26,7 @@ void Way::makeCopy(const Board& board)
 	{
 		for(unsigned int j=0; j < mWorkingBoard[i].size(); ++j)
 		{
-			switch(board.getFieldType(i,j))// .getFieldID(i,j))
+			switch(board.getFieldType(i,j))
 			{
 				case FieldType::FIELD_EMPTY:
 					mWorkingBoard[i][j]=0;
@@ -52,11 +49,7 @@ void Way::makeCopy(const Board& board)
 
 void Way::fillStepsList(Monster& monster, int index)
 {
-	//while(!mStepsList.empty())
-	//{
-	//	mStepsList.pop();
-	//}
-
+	monster.emptyStepsList();
 
 	monster.addStep(mExitPosition);
 	++mValueParameter;
@@ -118,7 +111,6 @@ bool Way::canFind(const Board& board, const sf::Vector2f& pixelsStartPosition)
 
 			if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == 2)		// found exit on right field
 			{
-//fillStepsList(k);
 				return true;
 			}
 			else if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == 0)	// right field
@@ -172,6 +164,8 @@ bool Way::findedWayInAll(MonstersList& monstersList, const Board& board)
 
 void Way::fillGlobalStepsList(Board& board)
 {
+	board.emptyGlobalStepsList();
+
 	board.addGlobalStep(mExitPosition);
 	++mValueParameter;
 
@@ -202,114 +196,3 @@ void Way::fillGlobalStepsList(Board& board)
 		++mValueParameter;
 	}
 }
-
-//std::stack<sf::Vector2i> Way::getStepsList()
-//{
-//	return mStepsList;
-//}
-
-//int Way::getStepsNumber()const
-//{
-//	return mStepsList.size();
-//}
-
-/* just in case
-bool GlobalWay::canFind(const std::vector<std::vector<Field*>>& board, unsigned int destinationX, unsigned int destinationY)
-{
-	std::vector<std::vector<int>> workBoard;
-
-	workBoard.reserve(board.size());
-
-	for(unsigned int i=0; i < board.size(); ++i)
-	{
-		workBoard.push_back(std::vector<int>(board[i].size()));
-	}
-
-	sf::Vector2u actualPosition;
-
-	int tmpID;
-
-	for(unsigned int i=0; i < workBoard.size(); ++i)
-	{
-		for(unsigned int j=0; j < workBoard[i].size(); ++j)
-		{
-			tmpID=board[i][j]->getID();
-
-			if(i == destinationX && j == destinationY)
-			{
-				workBoard[i][j]=9;
-			}
-			else if(tmpID == 0)		//empty
-			{
-				workBoard[i][j]=0;
-			}
-			else if(tmpID == 1)		//enter
-			{
-				workBoard[i][j]=-1;
-				actualPosition.x=i;
-				actualPosition.y=j;
-			}
-			else if(tmpID == 2)		//exit
-			{
-				workBoard[i][j]=2;
-			}
-			else
-			{
-				workBoard[i][j]=9;
-			}
-		}
-	}
-
-	std::queue<sf::Vector2u> pointsList;
-
-	pointsList.push(actualPosition);
-
-	int k=-1;
-	unsigned int pointsListSize=0;
-
-	while(pointsList.size() != 0)
-	{
-		pointsListSize=pointsList.size();
-		
-		for(unsigned int i=0; i < pointsListSize; ++i)
-		{
-			actualPosition=pointsList.front();
-			pointsList.pop();
-
-			if(workBoard[actualPosition.x + 1][actualPosition.y] == 2)		// found exit on right field
-			{
-				return true;
-			}
-			else if(workBoard[actualPosition.x + 1][actualPosition.y] == 0)	// right field
-			{
-				workBoard[actualPosition.x + 1][actualPosition.y]=k;
-				pointsList.push(sf::Vector2u(actualPosition.x + 1, actualPosition.y));
-			}
-
-			if(workBoard[actualPosition.x][actualPosition.y + 1] == 0)		// down field
-			{
-				workBoard[actualPosition.x][actualPosition.y + 1]=k;
-				pointsList.push(sf::Vector2u(actualPosition.x, actualPosition.y + 1));
-			}
-			
-			if(workBoard[actualPosition.x][actualPosition.y - 1] == 0)		// up field
-			{
-				workBoard[actualPosition.x][actualPosition.y - 1]=k;
-				pointsList.push(sf::Vector2u(actualPosition.x, actualPosition.y - 1));
-			}
-
-			if(actualPosition.x > 1)
-			{
-				if(workBoard[actualPosition.x - 1][actualPosition.y] == 0)		// left field
-				{
-					workBoard[actualPosition.x - 1][actualPosition.y]=k;
-					pointsList.push(sf::Vector2u(actualPosition.x - 1, actualPosition.y));
-				}
-			}
-		}
-		
-		--k;
-	}
-	return false;
-}
-*/

@@ -17,10 +17,7 @@ private:
 	sf::Vector2f mExitFieldPosition;
 
 	std::stack < sf::Vector2i> mGlobalStepsList;
-
-
-	//bool canFindGlobalWay();
-
+	
 public:
 	Board(int width, int height, int fieldWidth, int fieldHeight);
 	~Board();
@@ -33,6 +30,8 @@ public:
 	sf::Vector2f getExitFieldPosition()const;
 
 	void addGlobalStep(const sf::Vector2i& step);
+
+	void emptyGlobalStepsList();
 
 	FieldType getFieldType(int pX, int pY)const;
 

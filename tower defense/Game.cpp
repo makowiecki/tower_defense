@@ -2,14 +2,10 @@
 
 #include "global-information.h"
 #include "FieldManager.h"
-#include "Way.h"
-
-#include <iostream>
-using namespace std;
 
 Game::Game()
 	:mBoard(gi::FIELDS_IN_ROW, gi::FIELDS_IN_COLUMN, gi::FIELD_WIDTH, gi::FIELD_HEIGHT),
-	mMonstersList(/*mBoard*/),
+	mMonstersList(),
 	mMonstersWays(mBoard)
 {
 	if(mMonstersWays.canFind(mBoard, mBoard.getEnterFieldPosition()))
@@ -44,7 +40,7 @@ void Game::update(const sf::RenderWindow& window, float dt)
 		}
 	}
 
-	mMonstersList.update(window, dt/*, mBoard*/);
+	mMonstersList.update(window, dt);
 
 	if(FieldManager::getInstance().isSetToChange())
 	{
