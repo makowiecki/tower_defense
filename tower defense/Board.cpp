@@ -88,9 +88,13 @@ void Board::emptyGlobalStepsList()
 	}
 }
 
-FieldType Board::getFieldType(int pX, int pY)const
+FieldType Board::getFieldType(unsigned int pX, unsigned int pY)const
 {
-	return mBoard[pX][pY]->getFieldType();
+	if((pX >= 0 || pX <= mBoard.size()) && (pY >= 0 || pY <= mBoard[0].size()))
+	{
+		return mBoard[pX][pY]->getFieldType();
+	}
+	return FieldType::FIELD_NONE;
 }
 
 void Board::changeChosenField()

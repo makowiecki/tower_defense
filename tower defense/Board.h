@@ -33,7 +33,7 @@ public:
 
 	void emptyGlobalStepsList();
 
-	FieldType getFieldType(int pX, int pY)const;
+	FieldType getFieldType(unsigned int pX, unsigned int pY)const;
 
 	void changeChosenField();
 
