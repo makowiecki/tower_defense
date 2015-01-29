@@ -3,6 +3,7 @@
 
 #include <SFML\Graphics.hpp>
 #include <vector>
+#include "MonstersList.h"
 #include <stack>
 #include "Board.h"
 
@@ -11,11 +12,12 @@ class Way
 private:
 
 	std::vector<std::vector<int>> mWorkingBoard;
-	std::stack<sf::Vector2i> mStepsList;
+	//std::stack<sf::Vector2i> mStepsList;
 	sf::Vector2i mExitPosition;
+	int mValueParameter;
 
 	void makeCopy(const Board& board);
-	void fillStepsList(int k);
+	void fillStepsList(Monster& monster, int index);
 
 public:
 	Way(const Board& board);
@@ -29,9 +31,13 @@ public:
 	////
 	bool canFind(const Board& board, const sf::Vector2f& pixelsStartPosition);
 
-	sf::Vector2i getNextStep();
+	bool findedWayInAll(MonstersList& monstersList, const Board& board);
 
-	int getStepsNumber()const;
+	void fillGlobalStepsList(Board& board);
+
+	//std::stack<sf::Vector2i> getStepsList();
+
+	//int getStepsNumber()const;
 };
 
 #endif

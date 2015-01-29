@@ -4,8 +4,9 @@
 
 #include <iostream>
 using namespace std;
+#include <conio.h>
 
-Way::Way(const Board& board)
+Way::Way(const Board& board):mValueParameter(-1)
 {
 	int width=board.getWidth();
 	int height=board.getHeight();
@@ -49,54 +50,61 @@ void Way::makeCopy(const Board& board)
 	}
 }
 
-void Way::fillStepsList(int k)
+void Way::fillStepsList(Monster& monster, int index)
 {
-	mStepsList.push(mExitPosition);
-	++k;
+	//while(!mStepsList.empty())
+	//{
+	//	mStepsList.pop();
+	//}
+
+
+	monster.addStep(mExitPosition);
+	++mValueParameter;
 
 	sf::Vector2i actualPosition(mExitPosition);
 
-	while(k != -1)
+	while(mValueParameter != -1)
 	{
-		if(mWorkingBoard[actualPosition.x - 1][actualPosition.y] == k)//left
+		if(mWorkingBoard[actualPosition.x - 1][actualPosition.y] == mValueParameter)//left
 		{
 			actualPosition.x-=1;
-			mStepsList.push(actualPosition);
+			monster.addStep(actualPosition);
 		}
-		else if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == k)//right
+		else if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == mValueParameter)//right
 		{
 			actualPosition.x+=1;
-			mStepsList.push(actualPosition);
+			monster.addStep(actualPosition);
 		}
-		else if(mWorkingBoard[actualPosition.x][actualPosition.y - 1] == k)//up
+		else if(mWorkingBoard[actualPosition.x][actualPosition.y - 1] == mValueParameter)//up
 		{
 			actualPosition.y-=1;
-			mStepsList.push(actualPosition);
+			monster.addStep(actualPosition);
 		}
-		else if(mWorkingBoard[actualPosition.x][actualPosition.y + 1] == k)//down
+		else if(mWorkingBoard[actualPosition.x][actualPosition.y + 1] == mValueParameter)//down
 		{
 			actualPosition.y+=1;
-			mStepsList.push(actualPosition);
+			monster.addStep(actualPosition);
 		}
-		++k;
+		++mValueParameter;
 	}
 }
 
 bool Way::canFind(const Board& board, const sf::Vector2f& pixelsStartPosition)
 {
 	makeCopy(board);
+	mValueParameter=-1;
 
 	sf::Vector2i chosenFieldPosition(FieldManager::getInstance().getChosenFieldPosition());
 	mWorkingBoard[chosenFieldPosition.x][chosenFieldPosition.y]=9;
 
 	sf::Vector2u actualPosition(static_cast<unsigned>(pixelsStartPosition.x / gi::FIELD_WIDTH), static_cast<unsigned>(pixelsStartPosition.y / gi::FIELD_HEIGHT));
-	mWorkingBoard[actualPosition.x][actualPosition.y]=-1;
+	mWorkingBoard[actualPosition.x][actualPosition.y]=mValueParameter;
+	--mValueParameter;
 
 	std::queue<sf::Vector2u> pointsList;
 
 	pointsList.push(actualPosition);
 	
-	int k=-2;
 	unsigned int pointsListSize=0;
 
 	while(pointsList.size() != 0)
@@ -110,24 +118,24 @@ bool Way::canFind(const Board& board, const sf::Vector2f& pixelsStartPosition)
 
 			if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == 2)		// found exit on right field
 			{
-				fillStepsList(k);
+//fillStepsList(k);
 				return true;
 			}
 			else if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == 0)	// right field
 			{
-				mWorkingBoard[actualPosition.x + 1][actualPosition.y]=k;
+				mWorkingBoard[actualPosition.x + 1][actualPosition.y]=mValueParameter;
 				pointsList.push(sf::Vector2u(actualPosition.x + 1, actualPosition.y));
 			}
 
 			if(mWorkingBoard[actualPosition.x][actualPosition.y + 1] == 0)		// down field
 			{
-				mWorkingBoard[actualPosition.x][actualPosition.y + 1]=k;
+				mWorkingBoard[actualPosition.x][actualPosition.y + 1]=mValueParameter;
 				pointsList.push(sf::Vector2u(actualPosition.x, actualPosition.y + 1));
 			}
 
 			if(mWorkingBoard[actualPosition.x][actualPosition.y - 1] == 0)		// up field
 			{
-				mWorkingBoard[actualPosition.x][actualPosition.y - 1]=k;
+				mWorkingBoard[actualPosition.x][actualPosition.y - 1]=mValueParameter;
 				pointsList.push(sf::Vector2u(actualPosition.x, actualPosition.y - 1));
 			}
 
@@ -135,30 +143,75 @@ bool Way::canFind(const Board& board, const sf::Vector2f& pixelsStartPosition)
 			{
 				if(mWorkingBoard[actualPosition.x - 1][actualPosition.y] == 0)		// left field
 				{
-					mWorkingBoard[actualPosition.x - 1][actualPosition.y]=k;
+					mWorkingBoard[actualPosition.x - 1][actualPosition.y]=mValueParameter;
 					pointsList.push(sf::Vector2u(actualPosition.x - 1, actualPosition.y));
 				}
 			}
 		}
-		--k;
+		--mValueParameter;
 	}
-
+	
 	return false;
 }
 
-sf::Vector2i Way::getNextStep()
+bool Way::findedWayInAll(MonstersList& monstersList, const Board& board)
 {
-	sf::Vector2i ret=mStepsList.top();
-
-	mStepsList.pop();
-
-	return ret;
+	for(auto it=monstersList.mMonstersList.begin(); it != monstersList.mMonstersList.end(); ++it)
+	{
+		if(canFind(board, (*it)->getPosition()))
+		{
+			fillStepsList(**it, 0);
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
-int Way::getStepsNumber()const
+void Way::fillGlobalStepsList(Board& board)
 {
-	return mStepsList.size();
+	board.addGlobalStep(mExitPosition);
+	++mValueParameter;
+
+	sf::Vector2i actualPosition(mExitPosition);
+
+	while(mValueParameter != -1)
+	{
+		if(mWorkingBoard[actualPosition.x - 1][actualPosition.y] == mValueParameter)//left
+		{
+			actualPosition.x-=1;
+			board.addGlobalStep(actualPosition);
+		}
+		else if(mWorkingBoard[actualPosition.x + 1][actualPosition.y] == mValueParameter)//right
+		{
+			actualPosition.x+=1;
+			board.addGlobalStep(actualPosition);
+		}
+		else if(mWorkingBoard[actualPosition.x][actualPosition.y - 1] == mValueParameter)//up
+		{
+			actualPosition.y-=1;
+			board.addGlobalStep(actualPosition);
+		}
+		else if(mWorkingBoard[actualPosition.x][actualPosition.y + 1] == mValueParameter)//down
+		{
+			actualPosition.y+=1;
+			board.addGlobalStep(actualPosition);
+		}
+		++mValueParameter;
+	}
 }
+
+//std::stack<sf::Vector2i> Way::getStepsList()
+//{
+//	return mStepsList;
+//}
+
+//int Way::getStepsNumber()const
+//{
+//	return mStepsList.size();
+//}
 
 /* just in case
 bool GlobalWay::canFind(const std::vector<std::vector<Field*>>& board, unsigned int destinationX, unsigned int destinationY)
