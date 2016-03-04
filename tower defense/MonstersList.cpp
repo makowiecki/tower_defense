@@ -2,21 +2,19 @@
 
 #include "global-information.h"
 
+#include <algorithm>
+
 MonstersList::MonstersList()
 {
 }
 
 MonstersList::~MonstersList()
 {
-	for(auto it=mMonstersList.begin(); it != mMonstersList.end(); ++it)
-	{
-		delete *it;
-	}
 }
 
 void MonstersList::addMonster(std::stack<sf::Vector2i>& monsterStepsList)
 {
-	mMonstersList.push_back(new Monster(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2), monsterStepsList));
+	mMonstersList.push_back(std::make_unique<Monster>(25, 25 + 50 * (gi::FIELDS_IN_COLUMN / 2), monsterStepsList));
 }
 
 void MonstersList::update(const sf::RenderWindow& window, float dt)
@@ -38,8 +36,5 @@ void MonstersList::update(const sf::RenderWindow& window, float dt)
 
 void MonstersList::draw(sf::RenderWindow& window)
 {
-	for(auto it=mMonstersList.begin(); it != mMonstersList.end(); ++it)
-	{
-		window.draw(**it);
-	}
+	std::for_each(mMonstersList.begin(), mMonstersList.end(), [&window](const std::unique_ptr<Monster> &ptr){ window.draw(*ptr); });
 }

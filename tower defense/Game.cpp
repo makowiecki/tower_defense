@@ -34,7 +34,7 @@ void Game::update(const sf::RenderWindow& window, float dt)
 			mMonstersWays.fillGlobalStepsList(mBoard);
 		}
 
-		if(!mMonstersWays.findedWayInAll(mMonstersList, mBoard))
+		if(!mMonstersWays.foundWayInAll(mMonstersList, mBoard))
 		{
 			FieldManager::getInstance().discardChange();
 		}

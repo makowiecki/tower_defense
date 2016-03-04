@@ -2,6 +2,7 @@
 
 #include "Monster.h"
 #include <list>
+#include <memory>
 
 class MonstersList
 {
@@ -9,7 +10,7 @@ private:
 	//TODO: think how to change this:
 	friend class Way;
 
-	std::list<Monster*> mMonstersList;
+	std::list<std::unique_ptr<Monster>> mMonstersList;
 
 public:
 	MonstersList();
