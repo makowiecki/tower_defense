@@ -3,14 +3,16 @@
 #include <queue>
 
 Way::Way(const Board& board)
+	:Way(board.getWidth(), board.getHeight())
+{
+}
+
+Way::Way(int width, int height)
 	:mValueParameter(-1)
 {
-	int width=board.getWidth();
-	int height=board.getHeight();
-
 	mWorkingBoard.reserve(width);
 
-	for(int i=0; i < width; ++i)
+	for(int i = 0; i < width; ++i)
 	{
 		mWorkingBoard.push_back(std::vector<int>(height));
 	}
@@ -146,7 +148,7 @@ bool Way::canFind(const Board& board, const sf::Vector2f& pixelsStartPosition)
 	return false;
 }
 
-bool Way::findedWayInAll(MonstersList& monstersList, const Board& board)
+bool Way::foundWayInAll(MonstersList& monstersList, const Board& board)
 {
 	for(auto it=monstersList.mMonstersList.begin(); it != monstersList.mMonstersList.end(); ++it)
 	{

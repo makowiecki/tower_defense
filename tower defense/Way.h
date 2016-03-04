@@ -20,6 +20,7 @@ private:
 
 public:
 	Way(const Board& board);
+	Way(int width, int height);
 	~Way();
 
 	////
@@ -31,7 +32,7 @@ public:
 	bool canFind(const Board& board, const sf::Vector2f& pixelsStartPosition);
 
 	//TODO: think about rename:
-	bool findedWayInAll(MonstersList& monstersList, const Board& board);
+	bool foundWayInAll(MonstersList& monstersList, const Board& board);
 
 	void fillGlobalStepsList(Board& board);
 };
