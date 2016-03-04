@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <stack>
+#include <memory>
 #include "FieldManager.h"
 #include "MonstersList.h"
 
@@ -10,7 +11,9 @@ class Board
 {
 private:
 
-	std::vector<std::vector<Field*>> mBoard;
+	typedef std::unique_ptr<Field> FiledPtr;
+
+	std::vector<std::vector<FiledPtr>> mBoard;
 	FieldManager& mFieldManager;
 
 	sf::Vector2f mEnterFieldPosition;

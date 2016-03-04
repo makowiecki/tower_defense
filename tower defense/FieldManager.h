@@ -1,8 +1,10 @@
 #ifndef FIELD_MANAGER_H
 #define FIELD_MANAGER_H
 
+#include <memory>
 #include "all-fields.h"
 
+// should be an observer-builder pattern
 class FieldManager
 {
 private:
@@ -23,13 +25,13 @@ public:
 
 	static FieldManager& getInstance();
 
-	Field* createField(FieldType fieldType, int x, int y);
-	Field* createField(FieldType fieldType, const sf::Vector2f& pos);
+	std::unique_ptr<Field> createField(FieldType fieldType, int x, int y);
+	std::unique_ptr<Field> createField(FieldType fieldType, const sf::Vector2f& pos);
 
 	void setFieldToChange(FieldType fieldType, const sf::Vector2f& pixelsPosition);
 	bool isSetToChange()const;
 	void discardChange();
 	const sf::Vector2i& getChosenFieldPosition()const;
-	void changeField(Field*& desinationPtr);
+	void changeField(std::unique_ptr<Field>& desinationPtr);
 };
 #endif

@@ -18,7 +18,7 @@ FieldManager& FieldManager::getInstance()
 	return mManager;
 }
 
-Field* FieldManager::createField(FieldType fieldType, int x, int y)
+std::unique_ptr<Field> FieldManager::createField(FieldType fieldType, int x, int y)
 {
 	switch(fieldType)
 	{
@@ -26,16 +26,20 @@ Field* FieldManager::createField(FieldType fieldType, int x, int y)
 			return nullptr;
 			break;
 		case FIELD_EMPTY:
-			return new FieldEmpty(x, y);
+			//return std::make_unique<FieldEmpty>(x, y);
+			return std::unique_ptr<Field>(new FieldEmpty(x, y));
 			break;
 		case FIELD_ENTER:
-			return new FieldEnter(x, y);
+			//return std::make_unique<FieldEnter>(x, y);
+			return std::unique_ptr<Field>(new FieldEnter(x, y));
 			break;
 		case FIELD_EXIT:
-			return new FieldExit(x, y);
+			//return std::make_unique<FieldExit>(x, y);
+			return std::unique_ptr<Field>(new FieldExit(x, y));
 			break;
 		case FIELD_WALL:
-			return new FieldWall(x, y);
+			//return std::make_unique<FieldWall>(x, y);
+			return std::unique_ptr<Field>(new FieldWall(x, y));
 			break;
 		//case
 		default:
@@ -45,8 +49,8 @@ Field* FieldManager::createField(FieldType fieldType, int x, int y)
 }
 
 
-Field* FieldManager::createField(FieldType fieldType, const sf::Vector2f& pos)
-	{
+std::unique_ptr<Field> FieldManager::createField(FieldType fieldType, const sf::Vector2f& pos)
+{
 	return createField(fieldType, static_cast<int>(pos.x), static_cast<int>(pos.y));
 }
 
@@ -75,13 +79,9 @@ const sf::Vector2i& FieldManager::getChosenFieldPosition()const
 	return mOnBoardPosition;
 }
 
-void FieldManager::changeField(Field*& desinationPtr)
+void FieldManager::changeField(std::unique_ptr<Field>& desinationPtr)
 {
-	sf::Vector2f position(desinationPtr->getPosition());
-
-	delete desinationPtr;
-
-	desinationPtr=createField(mChosenFieldType, position);
+	desinationPtr = std::move(createField(mChosenFieldType, desinationPtr->getPosition()));
 
 	mSetToChange=false;
 	mChosenFieldType=FIELD_NONE;

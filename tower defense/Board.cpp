@@ -6,7 +6,7 @@ Board::Board(int width, int height, int fieldWidth, int fieldHeight):mFieldManag
 
 	for(int i=0; i < width; ++i)
 	{
-		mBoard.push_back(std::vector<Field*>(height));
+		mBoard.push_back(std::vector<FiledPtr>(height));
 	}
 
 	for(int i=0; i < width; ++i)
@@ -41,13 +41,6 @@ Board::Board(int width, int height, int fieldWidth, int fieldHeight):mFieldManag
 
 Board::~Board()
 {
-	for(unsigned int i=0; i < mBoard.size(); ++i)
-	{
-		for(unsigned int j=0; j < mBoard[i].size(); ++j)
-		{
-			delete mBoard[i][j];
-		}
-	}
 }
 
 int Board::getWidth()const
@@ -104,29 +97,26 @@ void Board::changeChosenField()
 
 void Board::updateAll(const sf::RenderWindow& window, float dt, MonstersList& monstersList)
 {
-	for(unsigned int i=0; i < mBoard.size(); ++i)
+	for_each(mBoard.begin(), mBoard.end(), [&window, dt](const vector<FiledPtr>& row)
 	{
-		for(unsigned int j=0; j < mBoard[i].size(); ++j)
-		{
-			mBoard[i][j]->update(window, dt);
-		}
-	}
+		for_each(row.begin(), row.end(), [&window, dt](const FiledPtr& ptr){ ptr->update(window, dt); });
+	});
 
 	//TMP:
 	if(/*monsterManager.issettoadd()*/true)
 	{
-		static bool raz=true;
+		static bool raz = true;
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
 		{
 			if(raz)
 			{
 				monstersList.addMonster(mGlobalStepsList);
-				raz=false;
+				raz = false;
 			}
 		}
 		else
 		{
-			raz=true;
+			raz = true;
 		}
 	}
 	//END_OF_TMP
@@ -134,11 +124,8 @@ void Board::updateAll(const sf::RenderWindow& window, float dt, MonstersList& mo
 
 void Board::drawAll(sf::RenderWindow& window)
 {
-	for(unsigned int i=0; i < mBoard.size(); ++i)
+	for_each(mBoard.begin(), mBoard.end(), [&window](const vector<FiledPtr>& row)
 	{
-		for(unsigned int j=0; j < mBoard[i].size(); ++j)
-		{
-			window.draw(*mBoard[i][j]);
-		}
-	}
+		for_each(row.begin(), row.end(), [&window](const FiledPtr& ptr){ window.draw(*ptr); });
+	});
 }
