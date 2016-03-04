@@ -1,6 +1,6 @@
 #include "ResourceManager.h"
 
-#include <unordered_map>
+#include <map>
 using namespace std;
 
 #include <cstdlib>	// only for exit() function
@@ -13,7 +13,7 @@ namespace // global variables definition
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//	Class definition, to add new resource modyfy defoult constructor.
+//	Class definition, to add new resource modyfy default constructor.
 /////////////////////////////////////////////////////////////////////////////
 namespace
 {
@@ -26,8 +26,8 @@ namespace
 
 		static ResourceKeeper mKeeper;
 
-		unordered_map<ResourceManager::Textures, sf::Texture> mTexturesMap;
-		unordered_map<ResourceManager::Fonts, sf::Font> mFontsMap;
+		map<ResourceManager::Textures, sf::Texture> mTexturesMap;
+		map<ResourceManager::Fonts, sf::Font> mFontsMap;
 
 		ResourceKeeper();
 		~ResourceKeeper() {};
@@ -76,25 +76,11 @@ namespace ResourceManager
 {
 	sf::Texture& getTexture(Textures texture)
 	{
-		auto it=GLOBAL_RESOURCE_KEEPER.mTexturesMap.begin();
-
-		while(it->first != texture)
-		{
-			++it;
-		}
-
-		return it->second;
+		return GLOBAL_RESOURCE_KEEPER.mTexturesMap.find(texture)->second; //must find becouse everything is added in ctor
 	}
 
 	sf::Font& getFont(Fonts font)
 	{
-		auto it=GLOBAL_RESOURCE_KEEPER.mFontsMap.begin();
-
-		while(it->first != font)
-		{
-			++it;
-		}
-
-		return it->second;
+		return GLOBAL_RESOURCE_KEEPER.mFontsMap.find(font)->second; //must find becouse everything is added in ctor
 	}
 } // namespace ResourceManager
