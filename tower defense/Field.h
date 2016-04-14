@@ -25,6 +25,8 @@ protected:
 
 	virtual void init()=0;
 
+	bool isCorner()const;
+
 public:
 	
 	virtual ~Field();
