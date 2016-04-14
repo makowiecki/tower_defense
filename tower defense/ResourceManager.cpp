@@ -49,7 +49,10 @@ namespace
 		if(!mTexturesMap[ResourceManager::FIELD_ENTER].loadFromFile(RESOURCE_DIRECTORY + "Images/field-enter.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::FIELD_EXIT].loadFromFile(RESOURCE_DIRECTORY + "Images/field-exit.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::FIELD_EMPTY].loadFromFile(RESOURCE_DIRECTORY + "Images/field-empty.png")) { _getch(); exit(-1); }
-		if(!mTexturesMap[ResourceManager::FIELD_WALL].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall.png")) { _getch(); exit(-1); }
+		if(!mTexturesMap[ResourceManager::FIELD_WALL_VERTICAL].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall-vertical.png")) { _getch(); exit(-1); }
+		if(!mTexturesMap[ResourceManager::FIELD_WALL_HORIZONTAL].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall-horizontal.png")) { _getch(); exit(-1); }
+		if(!mTexturesMap[ResourceManager::FIELD_WALL_CORNER].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall-corner.png")) { _getch(); exit(-1); }
+		if(!mTexturesMap[ResourceManager::FIELD_WALL_MIDDLE].loadFromFile(RESOURCE_DIRECTORY + "Images/field-wall-middle.png")) { _getch(); exit(-1); }
 		if(!mTexturesMap[ResourceManager::ENEMY_1].loadFromFile(RESOURCE_DIRECTORY + "Images/enemy1.png")) { _getch(); exit(-1); }
 
 
