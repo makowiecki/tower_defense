@@ -31,6 +31,7 @@ Temporary control:
 
 Unfortunately towers were not added yet.
 
+Latest build: [download](https://onedrive.live.com/redir?resid=5CD96EF7C665476C!73338&authkey=!ADTD59VB8VEs0sM&ithint=file%2czip)
 ________________________________________________________________________________________________________________
 ##Extra
 
